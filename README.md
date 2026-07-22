@@ -73,50 +73,13 @@ python main.py -t target-corp.com --deep-scan
 
 ---
 
-## 📡 Terminal Telemetry
+## TERMINAL TELEMETRY
 
-<div style="background-color: #0a0a0a; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border: 1px solid #222; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; color: #777777; line-height: 1.5; font-size: 14px; overflow-x: auto;">
-  <div style="display: flex; align-items: center; margin-bottom: 15px;">
-    <span style="height: 12px; width: 12px; background-color: #ff5f56; border-radius: 50%; display: inline-block; margin-right: 8px; box-shadow: 0 0 4px #ff5f5644;"></span>
-    <span style="height: 12px; width: 12px; background-color: #ffbd2e; border-radius: 50%; display: inline-block; margin-right: 8px; box-shadow: 0 0 4px #ffbd2e44;"></span>
-    <span style="height: 12px; width: 12px; background-color: #27c93f; border-radius: 50%; display: inline-block; box-shadow: 0 0 4px #27c93f44;"></span>
-  </div>
-  <pre style="margin: 0; color: #777777; background: transparent; overflow-x: auto; white-space: pre;">
-MODULES [9/9]                                           <span style="color: #ffffff; font-weight: bold;">CORPO-RECON</span>
-                                              <span style="color: #555555;">Corporate Reconnaissance Engine</span>
+*(Execution capture of automated reconnaissance pipeline)*
 
-<span style="color: #ffffff; font-weight: bold;">✔</span> <span style="color: #cccccc;">Kernel Sandbox</span>
-<span style="color: #ffffff; font-weight: bold;">✔</span> <span style="color: #cccccc;">Threat Intel DB</span>                     <span style="color: #555555;">LOG</span>
-<span style="color: #ffffff; font-weight: bold;">✔</span> <span style="color: #cccccc;">DNS Recon Engine</span>                     [INIT]  Loading threat intelligence signatures  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-<span style="color: #ffffff; font-weight: bold;">✔</span> <span style="color: #cccccc;">Email Intelligence</span>                   [INIT]  Initializing sandbox environment  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-<span style="color: #ffffff; font-weight: bold;">✔</span> <span style="color: #cccccc;">OSINT Pipelines</span>                      [INIT]  Establishing upstream database connections  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-<span style="color: #ffffff; font-weight: bold;">✔</span> <span style="color: #cccccc;">Network Scanner</span>                      [DNS]   Resolving target nameservers  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-<span style="color: #ffffff; font-weight: bold;">✔</span> <span style="color: #cccccc;">Dark Web Index</span>                       [DNS]   Enumerating subdomains via wordlist  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-<span style="color: #ffffff; font-weight: bold;">✔</span> <span style="color: #cccccc;">Financial Engine</span>                     [DNS]   Checking zone transfer vulnerability  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-<span style="color: #ffffff; font-weight: bold;">✔</span> <span style="color: #cccccc;">Report Generator</span>                     [DNS]   Parsing TXT, MX, and SPF records  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [SMTP]  Probing mail exchangers  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [SMTP]  Validating DKIM and DMARC policy  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [OSINT] Scraping public records and filings  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [OSINT] Correlating social media profiles  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [OSINT] Extracting organizational metadata  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [NET]   Scanning common service ports  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [NET]   Fingerprinting web technology stack  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [NET]   Analyzing SSL/TLS certificate chain  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [DARK]  Connecting to Tor relay nodes  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [DARK]  Sweeping hidden service directories  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [FIN]   Querying SEC EDGAR database  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [FIN]   Running financial anomaly detection  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [FIN]   Calculating composite risk score  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [SYS]   Compiling executive report  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-                                       [SYS]   Encrypting session artifacts  <span style="color: #ffffff; font-weight: bold;">DONE</span>
-
-
-
-                               TARGET <span style="color: #ffffff; font-weight: bold;">acme-corp.com</span>   │   <span style="color: #cccccc;">DEEP</span>   │   <span style="color: #555555;">COMPLETE</span>
-  </pre>
+<div align="center">
+  <img src="assets/Corpo-Recon.jpg" alt="Corpo-Recon Terminal Execution" width="850">
 </div>
-
----
 
 ## ⚖️ Legal & Operational Disclaimer
 
