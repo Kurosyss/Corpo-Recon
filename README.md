@@ -202,6 +202,15 @@ During execution, the dashboard footer displays the current operational phase. T
 
 <br>
 
+## 👤 Lead Architect
+
+**Corpo-Recon** is conceptualized, designed, and maintained by **Kurosyss (Piyush)**. 
+
+* 🛡️ **Cybersecurity & OSINT Researcher**
+* 🔗 [GitHub Profile](https://github.com/Kurosyss)
+
+*For professional inquiries, security audits, or red-team collaborations, reach out via direct channels.*
+
 ## Legal & Operational Disclaimer
 
 This software is intended **strictly** for authorized security auditing, defensive threat research, and corporate risk analysis conducted under explicit written authorization.
