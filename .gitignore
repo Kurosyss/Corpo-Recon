@@ -7,3 +7,11 @@ __pycache__/
 *.log
 test_out.txt
 test_err.txt
+
+# Corpo-Recon Output Reports (DO NOT PUSH SCANS)
+*.json
+*.txt
+!requirements.txt
+
+# Environment Variables 
+.env
