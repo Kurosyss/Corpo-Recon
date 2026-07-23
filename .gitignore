@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.venv/
 
 # Test & Log Files
 *.log
@@ -12,6 +13,10 @@ test_err.txt
 *.json
 *.txt
 !requirements.txt
+
+# Specific Reports Directory
+reports/*.json
+reports/*.txt
 
 # Environment Variables 
 .env
