@@ -13,7 +13,7 @@ from rich.text import Text
 
 from utils.logger import (
     console,
-    GLOW, LIGHT, DARK, MUTED,
+    GLOW, LIGHT, DARK, MUTED, PTR,
     make_banner,
     make_module_panel,
     make_log_panel,

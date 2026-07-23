@@ -27,10 +27,11 @@ if sys.stderr.encoding != "utf-8":
 
 # ── Ghost Palette ─────────────────────────────────────────────
 #   Only shades of grey and pure white.
-#   No blue. No neon. No cyan. No green.
-GLOW   = "bold white"       # Pure white glow — success, active
+#   No blue. No neon. No cyan. No green. No purple.
+GLOW   = "bold white"       # Pure white glow — spinner, active highlight
 LIGHT  = "#cccccc"           # Light grey — active/scanning text
 DARK   = "#777777"           # Dark grey — inactive, descriptions
+PTR    = "#808080"           # Grey — all > pointers and markers
 BORDER = "#333333"           # Near-invisible borders
 MUTED  = "#555555"           # Muted grey — secondary elements
 RED    = "#8b0000"           # Dark red — critical only, used sparingly
@@ -74,13 +75,13 @@ def make_module_panel(modules: dict, frame: int = 0) -> Panel:
 
     for name, status in modules.items():
         if status == "done":
-            content.append("  \u2714 ", style=GLOW)
+            content.append("  > ", style=PTR)
             content.append(f"{name}\n", style=LIGHT)
         elif status == "loading":
             content.append(f"  {spinner} ", style=GLOW)
             content.append(f"{name}\n", style=LIGHT)
         elif status == "standby":
-            content.append("  \u25cb ", style=MUTED)
+            content.append("  - ", style=MUTED)
             content.append(f"{name}\n", style=MUTED)
         else:
             content.append("    ")
