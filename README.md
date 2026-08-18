@@ -27,6 +27,8 @@
 
 **Corpo-Recon** is not just another reconnaissance tool. It is an **Enterprise-Grade Attack Surface Management (ASM)** platform engineered to rival $100M+ industry giants. Built for elite red teams, security researchers, and C-Suite financial risk analysts, it seamlessly combines offensive network scanning with dark web telemetry and real-time SEC financial data to generate a cohesive, AI-driven risk narrative.
 
+> **⚠️ DEVELOPMENT NOTICE:** *Certain premium modules and features mentioned below (like deep financial anomaly detection or advanced autonomous sweeps) are currently undergoing extensive refactoring and active development. Some features may be temporarily unavailable or operate in limited capacity while we transition to our new engine architecture.*
+
 The interface is strictly functional and monochromatic. No chaotic hex dumps or scrolling waterfalls of unreadable data. Every operation is structured as a sequential telemetry log, executing with clinical precision.
 
 At the conclusion of a scan, Corpo-Recon generates a **Palantir-style Executive HTML Dashboard** featuring physics-based interactive topology graphs and real-time financial market data.
