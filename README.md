@@ -1,7 +1,6 @@
 <div align="center">
   <img src="./assets/corpo_recon_banner.jpg" alt="Corpo-Recon Hero Banner" width="100%">
   <br><br>
-  <h1>C O R P O — R E C O N</h1>
   <p><i>The Billion-Dollar Attack Surface Management (ASM) & Financial Risk Engine</i></p>
   <br>
   <img src="https://img.shields.io/badge/Python-3.9+-1a1a1a.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python">
