@@ -160,6 +160,24 @@ def main() -> None:
                 future.result()
 
                 entry["status"] = "done"
+
+                # Inject a few real findings into the live log for the hacker aesthetic
+                if tag == "[DNS]" and "subdomains" in results and len(results["subdomains"]) > 0:
+                    for sub in random.sample(results["subdomains"], min(3, len(results["subdomains"]))):
+                        log_entries.append({"tag": "[+]", "desc": f"Discovered subdomain: {sub}", "status": "finding"})
+                elif tag == "[NET]" and "live_hosts" in results and len(results["live_hosts"]) > 0:
+                    for h in random.sample(results["live_hosts"], min(2, len(results["live_hosts"]))):
+                        log_entries.append({"tag": "[+]", "desc": f"Host alive: {h['url']}", "status": "finding"})
+                elif tag == "[NET]" and "fuzz_data" in results and len(results["fuzz_data"]) > 0:
+                    for f in random.sample(results["fuzz_data"], min(3, len(results["fuzz_data"]))):
+                        log_entries.append({"tag": "[+]", "desc": f"Discovered path: {f['path']} (HTTP {f['status']})", "status": "finding"})
+                elif tag == "[FIN]" and "financial_data" in results and results["financial_data"].get("ticker"):
+                    fin = results["financial_data"]
+                    log_entries.append({"tag": "[+]", "desc": f"Ticker: {fin['ticker']} | Price: ${fin.get('stock_price', 'N/A')}", "status": "finding"})
+                elif tag == "[DARK]" and "darkweb_data" in results and len(results["darkweb_data"].get("findings", [])) > 0:
+                    for d in random.sample(results["darkweb_data"]["findings"], min(2, len(results["darkweb_data"]["findings"]))):
+                        log_entries.append({"tag": "[!]", "desc": f"Dark Web Alert: {d['threat']}", "status": "finding"})
+
                 for mod in trigger_modules:
                     modules[mod] = "done"
 

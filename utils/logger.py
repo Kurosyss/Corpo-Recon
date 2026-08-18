@@ -130,6 +130,9 @@ def make_log_panel(
             content.append(f"  {tag} ", style=DARK)
             content.append(desc, style=LIGHT)
             content.append(f"  {spinner}\n", style=GLOW)
+        elif entry["status"] == "finding":
+            content.append(f"  {tag} ", style="#00ff66" if "[+]" in tag else RED)
+            content.append(desc + "\n", style=LIGHT)
 
     # Empty state
     if not entries:
