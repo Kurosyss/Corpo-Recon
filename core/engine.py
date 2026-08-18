@@ -42,6 +42,10 @@ from modules.fuzzer import run_fuzzer
 from modules.vuln_scanner import run_vuln_scan
 from modules.cve_matcher import run_cve_scanner
 from modules.export import save_results
+from modules.financial import analyze_financials
+from modules.darkweb import sweep_darkweb
+from modules.nuclei_engine import run_nuclei
+from modules.visualizer import generate_dashboard
 
 
 # ── Module Registry ───────────────────────────────────────────
@@ -233,6 +237,26 @@ def _run_recon(target: str, deep_scan: bool) -> dict:
     render_ports(port_data)
     console.print()
 
+    # ── Nuclei Engine ─────────────────────────────────────────
+    with console.status(Text("  Nuclei Vulnerability Correlation", style=DARK), spinner="dots", spinner_style="bold white"):
+        nuclei_data = run_nuclei(live_urls)
+    done_line("Nuclei Scan")
+    console.print()
+
+    # ── Deep Scan Modules ─────────────────────────────────────
+    financial_data = {}
+    darkweb_data = {}
+    if deep_scan:
+        with console.status(Text("  Tor Dark Web Indexing", style=DARK), spinner="dots", spinner_style="bold white"):
+            darkweb_data = sweep_darkweb(target)
+        done_line("Dark Web Index")
+        console.print()
+        
+        with console.status(Text("  SEC Financial Anomaly Detection", style=DARK), spinner="dots", spinner_style="bold white"):
+            financial_data = analyze_financials(target)
+        done_line("Financial Engine")
+        console.print()
+
     return {
         "dns_data": dns_data,
         "subdomains": subdomains if isinstance(subdomains, list) else [],
@@ -240,7 +264,10 @@ def _run_recon(target: str, deep_scan: bool) -> dict:
         "fuzz_data": fuzz_data,
         "vuln_data": vuln_data,
         "cve_data": cve_data,
+        "nuclei_data": nuclei_data,
         "port_data": port_data,
+        "financial_data": financial_data,
+        "darkweb_data": darkweb_data,
     }
 
 
@@ -273,7 +300,10 @@ def _export_and_summarize(
         "fuzz_paths": fuzz_data,
         "vuln_data": vuln_data,
         "cve_findings": cve_data,
+        "nuclei_findings": results.get("nuclei_data", []),
         "open_ports": port_data,
+        "financial_data": results.get("financial_data", {}),
+        "darkweb_data": results.get("darkweb_data", {}),
     }
 
     # ── Export ────────────────────────────────────────────────
@@ -300,12 +330,28 @@ def _export_and_summarize(
 
     console.print()
 
+    # ── Visualizer / Dashboard ────────────────────────────────
+    import os
+    dashboard_file: str | None = None
+    try:
+        with console.status(Text("  Generating Executive HTML Dashboard", style=DARK), spinner="dots", spinner_style="bold white"):
+            out_dir = os.path.join(os.getcwd(), "results")
+            dashboard_file = generate_dashboard(recon_data, out_dir)
+        done_line("Executive Dashboard")
+        console.print()
+    except Exception as e:
+        msg = Text()
+        msg.append("  > ", style=PTR)
+        msg.append(f"Dashboard generation skipped ({str(e)})", style=DARK)
+        console.print(msg)
+        console.print()
+
     # ── AI Report ─────────────────────────────────────────────
     ai_file: str | None = None
     if args.ai_report:
         try:
             from modules.ai_report import generate_report
-            with console.status(Text("  Generating executive summary", style=DARK), spinner="dots", spinner_style="bold white"):
+            with console.status(Text("  Generating executive AI summary", style=DARK), spinner="dots", spinner_style="bold white"):
                 ai_file = generate_report(recon_data, args.target)
             done_line("AI Report")
             console.print()
@@ -362,6 +408,10 @@ def _export_and_summarize(
         summary.append(f"FAILED ({export_error})\n", style=LIGHT)
     else:
         summary.append(f"{output_file}\n", style=LIGHT)
+
+    if dashboard_file:
+        summary.append("  Dashboard   ", style=MUTED)
+        summary.append(f"{dashboard_file}\n", style=LIGHT)
 
     if ai_file:
         summary.append("  AI Report   ", style=MUTED)
