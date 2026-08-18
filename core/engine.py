@@ -442,6 +442,14 @@ def _export_and_summarize(
     summary.append(f"{c_count} detected\n", style=LIGHT)
     summary.append("  Open Ports  ", style=MUTED)
     summary.append(f"{p_count} detected\n", style=LIGHT)
+    
+    fin_data = results.get("financial_data", {})
+    if fin_data:
+        ticker = fin_data.get("ticker", "N/A")
+        price = fin_data.get("stock_price", "N/A")
+        score = fin_data.get("risk_score", 0)
+        summary.append("  Financial   ", style=MUTED)
+        summary.append(f"{ticker} @ ${price} (Risk: {score})\n", style=LIGHT)
 
     summary.append("  Report      ", style=MUTED)
     if export_error:

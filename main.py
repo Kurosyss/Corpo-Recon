@@ -34,6 +34,8 @@ from modules.cve_matcher import run_cve_scanner
 from modules.port_scanner import run_port_scan
 from modules.fingerprint import detect_tech
 from modules.visualizer import generate_dashboard
+from modules.financial import analyze_financials
+from modules.darkweb import sweep_darkweb
 
 # ÔöÇÔöÇ Operation Sequence ÔöÇÔöÇ
 def build_operations(deep_scan: bool) -> list[tuple]:
@@ -65,12 +67,12 @@ def build_operations(deep_scan: bool) -> list[tuple]:
 
         # DARK
         ("[DARK]",  "Connecting to Tor relay nodes",              1.5, [],                                  True, lambda t, s, r: time.sleep(0.4)),
-        ("[DARK]",  "Sweeping hidden service directories",        1.7, ["Dark Web Index"],                  True, lambda t, s, r: time.sleep(0.4)),
+        ("[DARK]",  "Sweeping hidden service directories",        1.7, ["Dark Web Index"],                  True, lambda t, s, r: r.update({"darkweb_data": sweep_darkweb(t)})),
 
         # FIN
         ("[FIN]",   "Querying SEC EDGAR database",                1.3, [],                                  True, lambda t, s, r: time.sleep(0.3)),
         ("[FIN]",   "Running financial anomaly detection",        1.6, [],                                  True, lambda t, s, r: time.sleep(0.3)),
-        ("[FIN]",   "Calculating composite risk score",           0.9, ["Financial Engine"],                True, lambda t, s, r: time.sleep(0.3)),
+        ("[FIN]",   "Calculating composite risk score",           0.9, ["Financial Engine"],                True, lambda t, s, r: r.update({"financial_data": analyze_financials(t)})),
 
         # SYS
         ("[SYS]",   "Compiling executive report",                 0.7, [],                                  False, lambda t, s, r: r.update({"cve_data": run_cve_scanner([h["url"] for h in r.get("live_hosts", [])]), "port_data": run_port_scan(t)})),
@@ -173,7 +175,7 @@ def main() -> None:
     console.print()
     # Now we output the final summary
     # ensure results has all keys
-    for k in ["dns_data", "subdomains", "live_hosts", "fuzz_data", "vuln_data", "cve_data", "port_data"]:
+    for k in ["dns_data", "subdomains", "live_hosts", "fuzz_data", "vuln_data", "cve_data", "port_data", "financial_data", "darkweb_data"]:
         if k not in results:
             if k in ["subdomains", "live_hosts", "fuzz_data", "vuln_data", "cve_data", "port_data"]:
                 results[k] = []
