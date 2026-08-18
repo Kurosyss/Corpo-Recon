@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/hero-banner.png" alt="Corpo-Recon Hero Banner" width="100%">
+  <img src="./assets/corpo_recon_banner.jpg" alt="Corpo-Recon Hero Banner" width="100%">
   <br><br>
   <h1>C O R P O — R E C O N</h1>
   <p><i>Advanced Corporate Reconnaissance & Financial Risk Engine</i></p>
@@ -66,6 +66,9 @@ The execution pipeline is composed of nine isolated modules. Each module is purp
 | **07** | **Dark Web Index** | Connects autonomously to Tor relays and executes deep-sweeps across `.onion`. | `DEEP` only |
 | **08** | **Financial Engine** | Queries SEC EDGAR database, executes anomaly detection algorithms. | `DEEP` only |
 | **09** | **AI Report Gen**| Leverages Gemini API to compile telemetry into an executive brief. | `SURFACE` `DEEP` |
+| **10** | **Trap Buster Fuzzer**| Asynchronous engine with honeypot detection to map hidden endpoints. | `SURFACE` `DEEP` |
+| **11** | **Nuclei Vuln Engine**| Automates ProjectDiscovery's Nuclei for deep vulnerability correlation. | `SURFACE` `DEEP` |
+| **12** | **Topology Visualizer**| Generates a Palantir-style HTML force-graph of the corporate infrastructure. | `SURFACE` `DEEP` |
 
 <br>
 
@@ -131,8 +134,11 @@ Engages the complete reconnaissance suite. The `--deep-scan` flag explicitly aut
 [+] EMAIL INTEL     SMTP probing, DKIM/DMARC policy validation.
 [+] OSINT SWEEP     Public records scraping, social graph correlation, metadata extraction.
 [+] NETWORK SCAN    Port scanning, tech fingerprinting, SSL/TLS certificate analysis.
+[+] WAF FUZZING     Heuristic honeypot evasion and asynchronous path discovery.
+[+] VULN SCANNING   Nuclei template automation and deep CVE correlation.
 [+] DARK WEB        Tor relay connection, hidden service directory sweeps.        (Deep only)
 [+] FINANCIAL       SEC EDGAR queries, anomaly detection, composite risk scoring. (Deep only)
+[+] TOPOLOGY MAP    Generation of interactive dark-mode HTML infrastructure graph.
 [+] SYNTHESIZING    AI API integration for data correlation and executive report generation.
 [+] FINALIZING      Session artifact encryption and local storage.
 [+] COMPLETE        All modules online. All operations confirmed.
