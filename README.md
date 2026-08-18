@@ -12,6 +12,10 @@
   <code>Executive Risk Scoring. Zero-Day Typosquatting. Deep Web Intelligence.</code>
 </div>
 
+<p align="center">
+  <b>SEO Keywords:</b> <i>ASM, Attack Surface Management, OSINT, Bug Bounty, Red Teaming, Cyber Threat Intelligence, SEC Edgar, Financial Reconnaissance, Threat Intel, DMARC, WAF Fingerprinting</i>
+</p>
+
 <br>
 
 ---

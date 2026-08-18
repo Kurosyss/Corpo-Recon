@@ -203,6 +203,28 @@ def generate_dashboard(recon_data: dict, output_dir: str) -> str:
                 </div>
             </div>
         </div>
+
+        <div class="metric-card">
+            <div class="metric-title">Deep Recon Intel</div>
+            <div class="financial-grid">
+                <div class="fin-item">
+                    <span class="fin-label">Threat Intel Flag</span>
+                    <span class="fin-value" style="color: var(--danger);">{recon_data.get("threat_data", {{}}).get("target_flagged", False)}</span>
+                </div>
+                <div class="fin-item">
+                    <span class="fin-label">Sandbox Environment</span>
+                    <span class="fin-value" style="color: #fff;">{recon_data.get("sandbox_data", {{}}).get("environment", "Unknown")}</span>
+                </div>
+                <div class="fin-item">
+                    <span class="fin-label">Email Infrastructure Security</span>
+                    <span class="fin-value" style="color: var(--warning);">{recon_data.get("email_data", {{}}).get("secure", False)}</span>
+                </div>
+                <div class="fin-item">
+                    <span class="fin-label">Identified WAFs</span>
+                    <span class="fin-value" style="color: #fff;">{len(recon_data.get("fingerprints", []))} Detected</span>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="graph-container"></div>
 

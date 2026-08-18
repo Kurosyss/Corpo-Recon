@@ -46,6 +46,10 @@ from modules.financial import analyze_financials
 from modules.darkweb import sweep_darkweb
 from modules.nuclei_engine import run_nuclei
 from modules.visualizer import generate_dashboard
+from modules.sandbox import init_sandbox
+from modules.threat_intel import sync_threat_intel
+from modules.email_intel import run_email_intel
+from modules.fingerprint import detect_tech
 
 
 # ── Module Registry ───────────────────────────────────────────
@@ -172,12 +176,30 @@ def _run_recon(target: str, deep_scan: bool) -> dict:
     console.print(header)
     console.print()
 
+    # ── Kernel Sandbox ────────────────────────────────────────
+    with console.status(Text("  Initializing Kernel Sandbox", style=DARK), spinner="dots", spinner_style="bold white"):
+        sandbox_data = init_sandbox()
+    done_line("Kernel Sandbox")
+    console.print()
+
+    # ── Threat Intelligence ───────────────────────────────────
+    with console.status(Text("  Syncing Threat Intel DB", style=DARK), spinner="dots", spinner_style="bold white"):
+        threat_data = sync_threat_intel(target)
+    done_line("Threat Intel DB")
+    console.print()
+
     # ── DNS ───────────────────────────────────────────────────
     with console.status(Text("  DNS Reconnaissance", style=DARK), spinner="dots", spinner_style="bold white"):
         dns_data = run_dns_recon(target)
     done_line("DNS Reconnaissance")
     console.print()
     render_dns(dns_data)
+    console.print()
+
+    # ── Email Intelligence ────────────────────────────────────
+    with console.status(Text("  Email Infrastructure Intelligence", style=DARK), spinner="dots", spinner_style="bold white"):
+        email_data = run_email_intel(target)
+    done_line("Email Intelligence")
     console.print()
 
     # ── OSINT ─────────────────────────────────────────────────
@@ -213,6 +235,14 @@ def _run_recon(target: str, deep_scan: bool) -> dict:
     console.print()
     render_vuln_scan(vuln_data)
     console.print()
+    
+    # ── WAF & Fingerprint ─────────────────────────────────────
+    fingerprints = []
+    if live_urls:
+        with console.status(Text("  WAF & Stack Fingerprinting", style=DARK), spinner="dots", spinner_style="bold white"):
+            fingerprints = [detect_tech(url) for url in live_urls]
+        done_line("Tech Fingerprint")
+        console.print()
 
     # ── CVE / Leak Scan ───────────────────────────────────────
     with console.status(Text("  Deep CVE & Leakage Scan", style=DARK), spinner="dots", spinner_style="bold white"):
@@ -268,6 +298,10 @@ def _run_recon(target: str, deep_scan: bool) -> dict:
         "port_data": port_data,
         "financial_data": financial_data,
         "darkweb_data": darkweb_data,
+        "sandbox_data": sandbox_data,
+        "threat_data": threat_data,
+        "email_data": email_data,
+        "fingerprints": fingerprints,
     }
 
 
@@ -304,6 +338,10 @@ def _export_and_summarize(
         "open_ports": port_data,
         "financial_data": results.get("financial_data", {}),
         "darkweb_data": results.get("darkweb_data", {}),
+        "sandbox_data": results.get("sandbox_data", {}),
+        "threat_data": results.get("threat_data", {}),
+        "email_data": results.get("email_data", {}),
+        "fingerprints": results.get("fingerprints", []),
     }
 
     # ── Export ────────────────────────────────────────────────

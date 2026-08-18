@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corpo-Recon Executive Dashboard :: vulnweb.com</title>
+    <title>Corpo-Recon Executive Dashboard :: tesla.com</title>
     <script src="https://unpkg.com/force-graph"></script>
     <style>
         :root {
@@ -121,15 +121,15 @@
     <div id="sidebar">
         <div>
             <div class="brand">CORPO-RECON</div>
-            <h1>vulnweb.com</h1>
+            <h1>tesla.com</h1>
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">
-                SCAN INITIATED: 2026-08-19 00:51:33
+                SCAN INITIATED: 2026-08-19 00:36:14
             </div>
         </div>
 
         <div class="metric-card alert">
             <div class="metric-title">Composite Risk Score</div>
-            <div class="metric-value">33/100</div>
+            <div class="metric-value">15/100</div>
             <div class="metric-sub">Calculated via AI heuristics & SEC SEC filings</div>
         </div>
 
@@ -138,15 +138,15 @@
             <div class="financial-grid">
                 <div class="fin-item">
                     <span class="fin-label">Ticker</span>
-                    <span class="fin-value">ACUN</span>
+                    <span class="fin-value">TSLA</span>
                 </div>
                 <div class="fin-item">
                     <span class="fin-label">Market Price</span>
-                    <span class="fin-value">$None</span>
+                    <span class="fin-value">$335.7245</span>
                 </div>
                 <div class="fin-item" style="grid-column: span 2;">
                     <span class="fin-label">Market Capitalization</span>
-                    <span class="fin-value">None</span>
+                    <span class="fin-value">1325959872512</span>
                 </div>
             </div>
         </div>
@@ -156,19 +156,19 @@
             <div class="financial-grid">
                 <div class="fin-item">
                     <span class="fin-label">Subdomains</span>
-                    <span class="fin-value" style="color: #fff;">7</span>
+                    <span class="fin-value" style="color: #fff;">51</span>
                 </div>
                 <div class="fin-item">
                     <span class="fin-label">Live Hosts</span>
-                    <span class="fin-value" style="color: #fff;">3</span>
+                    <span class="fin-value" style="color: #fff;">46</span>
                 </div>
                 <div class="fin-item">
                     <span class="fin-label">Open Ports</span>
-                    <span class="fin-value" style="color: var(--warning);">0</span>
+                    <span class="fin-value" style="color: var(--warning);">2</span>
                 </div>
                 <div class="fin-item">
                     <span class="fin-label">Critical CVEs</span>
-                    <span class="fin-value" style="color: var(--danger);">0</span>
+                    <span class="fin-value" style="color: var(--danger);">10</span>
                 </div>
             </div>
         </div>
@@ -177,8 +177,8 @@
 
     <script>
         // Transform Python recon data into Graph JSON format
-        const targetDomain = "vulnweb.com";
-        const rawSubdomains = ["rest.vulnweb.com", "testasp.vulnweb.com", "testaspnet.vulnweb.com", "testhtml5.vulnweb.com", "testphp.vulnweb.com", "vulnweb.com", "www.vulnweb.com"];
+        const targetDomain = "tesla.com";
+        const rawSubdomains = ["accounts.tesla.com", "akamai-apigateway-vehicleextinfogw-prdsvc-st.tesla.com", "ams13-gpgw1.tesla.com", "apac-cppm.tesla.com", "apf-api.eng.vn.cloud.tesla.com", "apf-api.prd.vn.cloud.tesla.com", "assets-ir.tesla.com", "auth.eng.usw.vn.cloud.tesla.com", "auth.prd.euw1.vn.cloud.tesla.com", "auth.tesla.com", "autodiscover.tesla.com", "bettertime-stage.tesla.com", "bettertime.tesla.com", "billing.tesla.com", "bolt.tesla.com", "cdn-design.tesla.com", "charging-transparency.tesla.com", "dex.ops.bn.na.vn.cloud.tesla.com", "fleet-api.eng.na.vn.cloud.tesla.com", "fleet-api.prd.na.vn.cloud.tesla.com", "gateway-public-telemetry-eng5a-fleet.eng.vn.cloud.tesla.com", "gateway-public-telemetry-eng5b-fleet.eng.vn.cloud.tesla.com", "gateway-public-telemetry-eng5c-fleet.eng.vn.cloud.tesla.com", "gateway-public-telemetry-eng5d-fleet.eng.vn.cloud.tesla.com", "gateway-public-telemetry-prd5a-fleet.prd.vn.cloud.tesla.com", "gateway-public-telemetry-prd5b-fleet.prd.vn.cloud.tesla.com", "gateway-public-telemetry-prd5c-fleet.prd.vn.cloud.tesla.com", "gateway-public-telemetry-prd5d-fleet.prd.vn.cloud.tesla.com", "media-server-api.eng.vn.cloud.tesla.com", "media-server-api.prd.vn.cloud.tesla.com", "media-server-dev-api.eng.vn.cloud.tesla.com", "media-server-qr-dev.eng.america.vn.cloud.tesla.com", "media-server-qr.eng.america.vn.cloud.tesla.com", "media-server-qr.prd.america.vn.cloud.tesla.com", "mobile-links.eng.vn.cloud.tesla.com", "mobile-links.prd.vn.cloud.tesla.com", "mobile-ops-links.prd.vn.cloud.tesla.com", "ownerapi-alpha.prd.vn.cloud.tesla.com", "ownerapi-api.eng.euw1.vn.cloud.tesla.com", "ownerapi-api.eng.usw.vn.cloud.tesla.com", "s3.eng.na.vn.cloud.tesla.com", "s3.prd.na.vn.cloud.tesla.com", "sentry-api.ops.na.vn.cloud.tesla.com", "signaling-robotics.eng.vn.cloud.tesla.com", "tesla-hermes-snapshot-motors-eng.s3.eng.na.vn.cloud.tesla.com", "tesla-hermes-snapshot-motors.s3.prd.na.vn.cloud.tesla.com", "tesla.com", "tripx-alpha.prd.vn.cloud.tesla.com", "tripx.prd.vn.cloud.tesla.com", "vehicle-files.eng.euw1.vn.cloud.tesla.com", "vehicle-files.prd.euw1.vn.cloud.tesla.com"];
         
         const nodes = [{ id: targetDomain, group: 1, val: 20 }];
         const links = [];
