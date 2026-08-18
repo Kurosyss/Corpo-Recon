@@ -443,6 +443,12 @@ def _export_and_summarize(
     summary.append("  Open Ports  ", style=MUTED)
     summary.append(f"{p_count} detected\n", style=LIGHT)
     
+    dw_data = results.get("darkweb_data", {})
+    if dw_data:
+        dw_count = len(dw_data.get("findings", []))
+        summary.append("  Dark Web    ", style=MUTED)
+        summary.append(f"{dw_count} alerts found\n", style=LIGHT)
+    
     fin_data = results.get("financial_data", {})
     if fin_data:
         ticker = fin_data.get("ticker", "N/A")
