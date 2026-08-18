@@ -210,15 +210,15 @@ def generate_dashboard(recon_data: dict, output_dir: str) -> str:
             <div class="financial-grid">
                 <div class="fin-item">
                     <span class="fin-label">Threat Intel Flag</span>
-                    <span class="fin-value" style="color: var(--danger);">{recon_data.get("threat_data", {{}}).get("target_flagged", False)}</span>
+                    <span class="fin-value" style="color: var(--danger);">{recon_data.get("threat_data", dict()).get("target_flagged", False)}</span>
                 </div>
                 <div class="fin-item">
                     <span class="fin-label">Sandbox Environment</span>
-                    <span class="fin-value" style="color: #fff;">{recon_data.get("sandbox_data", {{}}).get("environment", "Unknown")}</span>
+                    <span class="fin-value" style="color: #fff;">{recon_data.get("sandbox_data", dict()).get("environment", "Unknown")}</span>
                 </div>
                 <div class="fin-item">
                     <span class="fin-label">Email Infrastructure Security</span>
-                    <span class="fin-value" style="color: var(--warning);">{recon_data.get("email_data", {{}}).get("secure", False)}</span>
+                    <span class="fin-value" style="color: var(--warning);">{recon_data.get("email_data", dict()).get("secure", False)}</span>
                 </div>
                 <div class="fin-item">
                     <span class="fin-label">Identified WAFs</span>
