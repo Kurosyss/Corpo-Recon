@@ -13,7 +13,8 @@
 </div>
 
 <p align="center">
-  <b>SEO Keywords:</b> <i>ASM, Attack Surface Management, OSINT, Bug Bounty, Red Teaming, Cyber Threat Intelligence, SEC Edgar, Financial Reconnaissance, Threat Intel, DMARC, WAF Fingerprinting</i>
+  <b>Advanced Attack Surface Management (ASM)</b> &bull; <b>Open-Source Intelligence (OSINT)</b> &bull; <b>Continuous Threat Exposure Management (CTEM)</b><br>
+  <i>Empowering red teams, bug bounty hunters, and C-Suite risk analysts with clinical precision, dark web telemetry, and SEC financial reconnaissance.</i>
 </p>
 
 <br>
