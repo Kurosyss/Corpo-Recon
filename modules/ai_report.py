@@ -135,11 +135,11 @@ def _generate_local_report(recon_data: dict, target: str) -> str:
     return "\n".join(lines)
 
 
-def generate_report(recon_data: dict, target: str) -> str:
+def generate_report(recon_data: dict, target: str) -> tuple[str, str]:
     """
     Generate an executive summary report.
     Tries Gemini API first, falls back to local template.
-    Returns the output filename.
+    Returns (output_filename, report_text).
     """
     output_file = f"executive_report_{target}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
     report_text: str = ""
@@ -164,4 +164,4 @@ def generate_report(recon_data: dict, target: str) -> str:
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(report_text)
 
-    return output_file
+    return output_file, report_text

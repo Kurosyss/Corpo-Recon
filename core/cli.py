@@ -69,7 +69,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--deep-scan",
         action="store_true",
-        default=False,
+        default=True,
         help="Enable deep-scan (dark web sweep, financial analysis)",
     )
     parser.add_argument(
@@ -79,7 +79,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--ai-report",
         action="store_true",
-        default=False,
+        default=True,
         help="Generate AI-powered executive summary",
     )
     return parser

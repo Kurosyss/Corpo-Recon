@@ -18,9 +18,10 @@ def generate_dashboard(recon_data: dict, output_dir: str) -> str:
     
     # Extract Financials
     fin = recon_data.get("financial_data", {})
-    ticker = fin.get("ticker", "N/A")
-    stock_price = fin.get("stock_price", "N/A")
-    market_cap = fin.get("market_cap", "N/A")
+    ticker = fin.get("ticker") or "N/A"
+    stock_price = fin.get("stock_price")
+    stock_price_display = f"${stock_price}" if stock_price is not None else "N/A"
+    market_cap = fin.get("market_cap") or "N/A"
     risk_score = fin.get("risk_score", 0)
     
     # Extract metrics
@@ -173,7 +174,7 @@ def generate_dashboard(recon_data: dict, output_dir: str) -> str:
                 </div>
                 <div class="fin-item">
                     <span class="fin-label">Market Price</span>
-                    <span class="fin-value">${stock_price}</span>
+                    <span class="fin-value">{stock_price_display}</span>
                 </div>
                 <div class="fin-item" style="grid-column: span 2;">
                     <span class="fin-label">Market Capitalization</span>
@@ -224,6 +225,17 @@ def generate_dashboard(recon_data: dict, output_dir: str) -> str:
                     <span class="fin-value" style="color: #fff;">{len(recon_data.get("fingerprints", []))} Detected</span>
                 </div>
             </div>
+        </div>
+        <div class="metric-card" style="margin-top: 1rem; border-color: rgba(255, 255, 255, 0.1);">
+            <div class="metric-title">Target Intelligence (Screenshot)</div>
+            <div style="width: 100%; height: 180px; overflow: hidden; border-radius: 6px; border: 1px solid var(--accent); margin-bottom: 1rem; background: #000;">
+                <img src="https://image.thum.io/get/width/600/crop/800/https://{target}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMzMzMiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZmlsbD0iI2ZmZiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TY3JlZW5zaG90IFVuYXZhaWxhYmxlPC90ZXh0Pjwvc3ZnPg=='" alt="Target Screenshot" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8) contrast(1.2);">
+            </div>
+        </div>
+
+        <div class="metric-card" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+            <div class="metric-title">AI Executive Summary</div>
+            <div style="flex: 1; overflow-y: auto; font-family: var(--font-mono); font-size: 0.75rem; color: #a0a0a0; white-space: pre-wrap; line-height: 1.4; padding-right: 10px;">{recon_data.get('ai_report', 'AI Report not available. Run with --ai-report flag.')}</div>
         </div>
     </div>
     <div id="graph-container"></div>

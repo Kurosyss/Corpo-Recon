@@ -368,6 +368,24 @@ def _export_and_summarize(
 
     console.print()
 
+    # ── AI Report ─────────────────────────────────────────────
+    ai_file: str | None = None
+    ai_report_text: str | None = None
+    if args.ai_report:
+        try:
+            from modules.ai_report import generate_report
+            with console.status(Text("  Generating executive AI summary", style=DARK), spinner="dots", spinner_style="bold white"):
+                ai_file, ai_report_text = generate_report(recon_data, args.target)
+                recon_data["ai_report"] = ai_report_text
+            done_line("AI Report")
+            console.print()
+        except Exception as e:
+            msg = Text()
+            msg.append("  > ", style=PTR)
+            msg.append(f"AI report generation skipped ({e})", style=DARK)
+            console.print(msg)
+            console.print()
+
     # ── Visualizer / Dashboard ────────────────────────────────
     import os
     dashboard_file: str | None = None
@@ -383,22 +401,6 @@ def _export_and_summarize(
         msg.append(f"Dashboard generation skipped ({str(e)})", style=DARK)
         console.print(msg)
         console.print()
-
-    # ── AI Report ─────────────────────────────────────────────
-    ai_file: str | None = None
-    if args.ai_report:
-        try:
-            from modules.ai_report import generate_report
-            with console.status(Text("  Generating executive AI summary", style=DARK), spinner="dots", spinner_style="bold white"):
-                ai_file = generate_report(recon_data, args.target)
-            done_line("AI Report")
-            console.print()
-        except Exception:
-            msg = Text()
-            msg.append("  > ", style=PTR)
-            msg.append("AI report generation skipped (missing dependency or API key)", style=DARK)
-            console.print(msg)
-            console.print()
 
     # ── Summary ───────────────────────────────────────────────
     console.rule(style=BORDER)
